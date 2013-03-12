@@ -248,7 +248,7 @@ public class RouteGeneration {
 			System.err.println("Please set the name of a base name for input files.");
 		}
 		
-		logger.info("reading .net.xml file...");
+		logger.info("reading " + baseName + ".net.xml file...");
 		readNet(baseFolder + baseName + ".net.xml"); 
 		
 		logger.info("reading .osm.xml files...");
@@ -260,16 +260,16 @@ public class RouteGeneration {
 		logger.info("commercial surface " + sumCommercialSurface);
 		logger.info("industrial surface " + sumIndustrialSurface);
 
-		logger.info("reading .area.xml file...");
+		logger.info("reading  " + baseName + ".area.xml file...");
 		readAreas(baseFolder + baseName + ".areas.xml");
 		logger.info("added " + areas.size() + " areas.");
 		VehlLuxLog.printAreasInfo(logger, this);
 		
-		logger.info("reading vehicle types from .veh.xml file...");
+		logger.info("reading vehicle types from " + baseName + ".veh.xml file...");
 		readVehicleTypes(baseFolder + baseName + ".veh.xml");	
 		logger.info("read " + vtypes.size() + " vehicle types");
 		
-		logger.info("reading .loop.xml file...");
+		logger.info("reading " + baseName + ".loop.xml file...");
 		readLoops(baseFolder + baseName + ".loop.xml");
 		VehlLuxLog.printLoopsInfo(logger, this);
 		

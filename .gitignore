@@ -2,6 +2,6 @@ bin/
 .classpath
 .project
 vehilux.jar
-/test
+.DS_Store
 /routegeneration.sh
 /routegeneration.sh~
