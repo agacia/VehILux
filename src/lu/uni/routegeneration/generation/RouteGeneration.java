@@ -64,7 +64,7 @@ public class RouteGeneration {
 	    //logger.setLevel(Level.WARN);
 		
 		ArgumentsParser arguments = new ArgumentsParser();
-		arguments.parse(args);
+		arguments.parseXMLfile("config.xml");
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmm");
 		String outputFolder = dateFormat.format(Calendar.getInstance().getTime()) + "/";
@@ -182,7 +182,6 @@ public class RouteGeneration {
 		return vtypes; 
 	}
 
-
 	public ArrayList<Trip> getTrips() {
 		return trips;
 	}
@@ -233,13 +232,8 @@ public class RouteGeneration {
 		sumResidentialSurface = 0.0;
 		sumCommercialSurface = 0.0;
 		sumIndustrialSurface = 0.0;
-		baseName = "Luxembourg"; // Project name. Is assumed to be the base name of all configuration files (ex. MyProject.rou.xml, MyProject.net.xml)
-		baseFolder = "./test/Luxembourg/"; // Path that to the folder containing configuration files.
-		stopHour = 11; // Time of the running simulation (hours)
-		referenceNodeId= "77813703#1";
-		insideFlowRatio = 0.4;
 	}
-	
+		
 	public void readInput() {
 		if (baseFolder == null || baseFolder.isEmpty()) {
 			System.err.println("Please set the name of a base folder.");
@@ -247,6 +241,8 @@ public class RouteGeneration {
 		if (baseName == null || baseName.isEmpty()) {
 			System.err.println("Please set the name of a base name for input files.");
 		}
+
+		System.out.println("config: " + baseName + " " + baseFolder + " " +stopHour);
 		
 		logger.info("reading " + baseName + ".net.xml file...");
 		readNet(baseFolder + baseName + ".net.xml"); 
@@ -415,7 +411,7 @@ public class RouteGeneration {
 	private void readGraph(String graphPath, String netPath) {
 		graph = new MultiGraph("roadNetwork", false, true);
 		File graphFile = new File(graphPath);
-		//if (!graphFile.exists()) {
+		if (!graphFile.exists()) {
 			logger.info("generating the DGS file...");
 			SumoNetworkToDGS netParser = new SumoNetworkToDGS(baseFolder, baseName);
 			try {
@@ -427,7 +423,7 @@ public class RouteGeneration {
 			} catch (Exception ex) {
 				ex.printStackTrace(System.err);
 			}
-		//}
+		}
 		try {
 			logger.info("reading the DGS file...");
 			graph.read(baseFolder + baseName + ".dgs");

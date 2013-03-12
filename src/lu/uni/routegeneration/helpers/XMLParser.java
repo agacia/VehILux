@@ -13,11 +13,13 @@ import javax.xml.transform.stream.StreamResult;
 import lu.uni.routegeneration.generation.Trip;
 import lu.uni.routegeneration.generation.VType;
 
+import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.AttributesImpl;
+import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 

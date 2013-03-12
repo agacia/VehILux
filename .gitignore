@@ -3,5 +3,6 @@ bin/
 .project
 vehilux.jar
 .DS_Store
+/test
 /routegeneration.sh
 /routegeneration.sh~

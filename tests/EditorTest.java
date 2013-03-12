@@ -86,13 +86,13 @@ public class EditorTest extends TestCase {
 		editor.setNodes("loops", rg.getNodes(edgeIds), Color.BLACK, 15, ShapeType.RECT );
 		
 		// set controls
-		LoopHandler h = new LoopHandler(rg.getStopHour());
-		XMLParser.readFile(arguments.getBaseFolder() + arguments.getBaseName() + ".control.xml", h);
-		edgeIds = new ArrayList<String>();
-		for (Loop loop : h.getLoops()) {
-			edgeIds.add(loop.getEdge());
-		}
-		editor.setNodes("controls", rg.getNodes(edgeIds), Color.BLACK, 15, ShapeType.OVAL);
+//		LoopHandler h = new LoopHandler(rg.getStopHour());
+//		XMLParser.readFile(arguments.getBaseFolder() + arguments.getBaseName() + ".control.xml", h);
+//		edgeIds = new ArrayList<String>();
+//		for (Loop loop : h.getLoops()) {
+//			edgeIds.add(loop.getEdge());
+//		}
+//		editor.setNodes("controls", rg.getNodes(edgeIds), Color.BLACK, 15, ShapeType.OVAL);
 		
 		// set sources
 		RouteHandler routeHandler = new RouteHandler();
@@ -117,7 +117,7 @@ public class EditorTest extends TestCase {
 		editor.setDisplayAreas(true);
 		editor.setDisplayEdges(true);
 		editor.setDisplayZones(true);
-		editor.setDisplayPoints(new String[]{"sources", "destinations"});
+//		editor.setDisplayPoints(new String[]{"sources", "destinations"});
 		editor.run();
 		
 		editor.writeImage(arguments.getBaseFolder() + outputFolder, arguments.getBaseFolder() + outputFolder + "background.png");

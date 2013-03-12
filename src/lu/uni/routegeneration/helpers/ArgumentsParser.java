@@ -1,5 +1,13 @@
 package lu.uni.routegeneration.helpers;
 
+import java.util.ArrayList;
+
+import lu.uni.routegeneration.generation.VType;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
 /**
  * # Best Solution:
 #
@@ -24,6 +32,7 @@ package lu.uni.routegeneration.helpers;
 
 public class ArgumentsParser {
 	
+	// default values  
 	private String baseFolder  = "./test/Luxembourg/";
 	private String baseName = "Luxembourg";
 	private double insideFlowRatio = 0.3435561009268159;
@@ -132,6 +141,63 @@ public class ArgumentsParser {
 			parse(args.split(" "));
 		}
 	}
+	
+	public void parseXMLfile(String fileName) {
+		ArgumentsHandler handler = new ArgumentsHandler();
+		XMLParser.readFile(fileName, handler);
+	}
+	
+	public class ArgumentsHandler extends DefaultHandler {
+
+		private ArrayList<VType> vtypes = new ArrayList<VType>();
+		
+		public ArrayList<VType> getVtypes() {
+			return vtypes;
+		}
+
+		@Override
+		public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+			super.startElement(uri, localName, qName, attributes);
+			if (qName.equals("argument")) {
+				String name = attributes.getValue(attributes.getIndex("name"));
+				String value = attributes.getValue(attributes.getIndex("value"));
+				if (name.equals("baseFolder")) {
+					baseFolder = value;
+				}
+				if (name.equals("baseName")) {
+					baseName = value;
+				}
+				if (name.equals("insideFlowRatio")) {
+					insideFlowRatio = Double.parseDouble(value);
+				}
+				if (name.equals("stopHour")) {
+					stopHour = Integer.parseInt(value);
+				}
+				if (name.equals("shiftingRatio")) {
+					shiftingRatio = Double.parseDouble(value);
+				}
+				if (name.equals("referenceNodeId")) {
+					referenceNodeId = value;
+				}
+				if (name.equals("steps")) {
+					steps = Integer.parseInt(value);
+				}
+				if (name.equals("-dumpInterval")) {
+					dumpInterval = Integer.parseInt(value);
+				}
+				if (name.equals("-defaultResidentialAreaProbability")) {
+					defaultResidentialAreaProbability = Double.parseDouble(value);
+				}
+				if (name.equals("-defaultCommercialAreaProbability")) {
+					defaultCommercialAreaProbability = Double.parseDouble(value);
+				}
+				if (name.equals("-defaultIndustrialAreaProbability")) {
+					defaultIndustrialAreaProbability = Double.parseDouble(value);
+				}
+			}
+		}
+	}
+	
 	
 	public void parse(String[] args) {
 		if (args == null) {

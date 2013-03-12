@@ -28,6 +28,7 @@ public class VehicleTypesHandler extends DefaultHandler {
 			String minGap = attributes.getValue(attributes.getIndex("minGap"));
 			String maxSpeed = attributes.getValue(attributes.getIndex("maxSpeed"));
 			String sigma = attributes.getValue(attributes.getIndex("sigma"));
+//			System.out.println(id + " " + accel + " " + color + " " + decel + " " + length + " " + minGap + " " +  maxSpeed + " " + sigma);
 			VType vt = new VType(id, accel, color, decel, length, minGap, maxSpeed, sigma);
 			vtypes.add(vt);
 		}
